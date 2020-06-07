@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Political Bias Detector</title>
+    <link rel="icon" href="static/icon.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bulma -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+         <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+		<style>
+    body {
+		  background-image: linear-gradient(to right, blue, red);
+		}
+    h1{
+       font-size: 4rem;
+    }
+    button{
+      width: 20%;
+      height: 4rem;
+    }
+    .diffback{
+      background-color: black;
+    }
+    .center{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+    .left {
+      display: flex;
+			justify-content: left;
+			align-items: center;
+    }
+    .bottom {
+        display: flex;
+  			justify-content: center;
+  			align-items: flex-end;
+    }
+
+    .center-column {
+        flex-direction: column;
+    }
+    .pad {
+      padding: 50px
+    }
+
+    #a { grid-area: a; }
+    #b { grid-area: b; }
+    #c { grid-area: c; }
+
+    #a {
+      border-right: 4px solid gray;
+    }
+    #c {
+      border-left: 4px solid gray;
+    }
+
+    #grid {
+        display: grid;
+        grid-template-areas:
+    			"a b c";
+        grid-row-gap: 3.5rem;
+
+    }
+    @media (max-width: 800px) {
+        #grid {
+            grid-template-areas:
+                "a"
+                "b"
+                "c";
+
+    						grid-row-gap: 1rem;
+        }
+        #a {
+        padding-bottom: 50px;
+        border-bottom: 4px solid gray;
+        border-right: 0;
+        }
+        #c{
+          padding-top: 50px;
+          border-top: 4px solid gray;
+          border-left: 0;
+        }
+        h1{
+          font-size: 3rem;
+        }
+        button{
+          width : 6rem;
+          height: 5rem;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+  <section class="hero is-fullheight">
+    <nav class="hero-head">
+  		<div class="columns is-mobile is-marginless has-text-weight-bold ">
+
+  		<div class="column left">
+        <article class="media left">
+        <figure class="image center is-128x128">
+					<img src="static/logo.png" style = width: 5rem; height: 5rem;>
+				</figure>
+  			<h1 class="title has-text-centered is-1 has-text-white">PoliBias</h1>
+      </article>
+  		</div>
+
+  		</div>
+  	</nav>
+    <h1 class= "title is-1 has-text-centered has-text-white">Political Bias Detector</h1>
+    <header class="hero-body">
+      <div id="grid" style="width: 100%;">
+  			<div id="a" class="center center-column">
+          <p class="subtitle has-text-centered has-text-white is-5" style="width: 90%;">Type your text below</p>
+          <div class="field" style="width: 90%;" action ="/message" method = "post">
+            <div class="control">
+              <form action="{{ url_for('message') }}" method="post">
+                <textarea id="inputbox" name="name" class="textarea is-info is-small has-fixed-size" placeholder="Input Text Here" style="width: 90%;"></textarea>
+                <div class="container center" style="width: 100%;  padding-top: 40px;">
+                <button>Submit</button>
+              </div>
+              <form>
+            </div>
+          </div>
+  			</div>
+  			<div id="b" class="center center-column">
+  	  <p class="subtitle has-text-white is-5">Enter a URL</p>
+          <div class="field"  style="width: 75%;" action ="/url" method = "post">
+            <div class="control">
+              <form action="{{ url_for('url') }}" method="post">
+                <div class="container center" style="width: 100%;">
+                <input type="text" name="input" placeholder="Enter url" style="width: 70%;">
+                </div>
+                <div class="container center" style="width: 100%; padding-top: 40px;">
+                <button>Submit</button>
+              </div>
+              <form>
+            </div>
+          </div>
+  			</div>
+        <div id="c" class="center center-column">
+  				<p class="subtitle has-text-white is-5">File Upload</p>
+          <div class="field"  style="width: 95%;">
+            <div class="control">
+              
+              <form action="{{ url_for('url') }}" method="post">
+                <div class="center" style="width: 100%;">
+                  <label class="file-label">
+                  <input type="file" name="fileToUpload" accept=".txt" class="file-input" style="width: 100%;">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                </label>
+                </div>
+                <div class="container center" style="width: 100%; padding-top: 40px;">
+                <button >Submit</button>
+                </div>
+                <form>
+            
+            </div>
+          </div>
+  			</div>
+  		</div>
+    </header>
+    <main class="hero-foot  diffback" style="padding: 1rem;">
+      <p class="subtitle has-text-centered has-text-white is-6" style="width: 100%;">Iain Lee, Mohamed Benalla, Keshav Ganapathy, Yuhwan Lee</p>
+      <p class="subtitle has-text-centered has-text-white is-7" style="width: 100%;">Thank you Dr. Mohit Iyyer for the data set used for the neural network</p>
+  	</main>
+
+  </section>
+</body>
+
+</html>

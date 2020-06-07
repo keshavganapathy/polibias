@@ -1,0 +1,256 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Political Bias Detector</title>
+    <link rel="icon" href="static/icon.png" type="image/gif" sizes="16x16">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <!-- Bulma -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+         <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+		<style>
+    .hero {
+      	background: white;
+    }
+    h1{
+       font-size: 4rem;
+    }
+    /* button{
+      width: 20%;
+      height: 4rem;
+    } */
+    .diffback{
+      background-color: black;
+    }
+    .center{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+    .left {
+      display: flex;
+			justify-content: left;
+			align-items: center;
+    }
+    .bottom {
+        display: flex;
+  			justify-content: center;
+  			align-items: flex-end;
+    }
+
+    .center-column {
+        flex-direction: column;
+    }
+    .pad {
+      padding: 50px
+    }
+
+    #a { grid-area: a; }
+
+    #grid {
+      display: grid;
+        grid-template-areas:
+            "a";
+        grid-row-gap: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    html, body {
+        font-family: 'Montserrat', sans-serif;
+    }
+    #herobody{
+      margin: 0;
+    }
+
+    /* #title {
+        font-size: 5rem;
+
+    } */
+
+    header {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        margin-left: 2rem;
+    }
+     img {
+        float: left;
+        margin-right: 2rem;
+    }
+    #logo {
+        font-size: 3rem;
+        /* float: left; */
+        margin-top: -.25rem;
+        margin-left: 2rem;
+    }
+    #title{
+      color: black;
+      font-size: 4.5rem;
+    }
+    #polarity-display {
+        /* text-align: center; */
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: black;
+    }
+    #statistics{
+      color:black;
+      font-size: 3.5rem;
+    }
+    #list1, #list2, #list3, #list4 {
+      color: black;
+      font-size: 2.5rem;
+    }
+
+    .slider {
+        /* makes slider unselectable */
+        pointer-events: none;
+
+        /* margin-top: 7vh;
+        margin-bottom: 6vh; */
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        -webkit-appearance: none; /*override default look*/
+        width: 80%;
+        display: inline-block;
+        background: linear-gradient(90deg, rgba(77,66,255,1) 0%, rgba(255,0,0,1) 100%);
+        /* background: linear-gradient(90deg, rgba(77,66,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,0,0,1) 100%); */
+        height: .5rem;
+    }
+
+    /*slider handle*/
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      /* appearance: none; */
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #000000;
+      /* cursor: pointer; */
+    }
+
+    #slider-container {
+        width: 75%;
+        text-align: center;
+    }
+
+    .diffback{
+      background-color: black;
+    }
+    .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+        #grid {
+          display: grid;
+            grid-template-areas:
+                "a";
+            grid-row-gap: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero{
+          background: white;
+        }
+        .h1{
+          color: black;
+          font-size: 2rem;
+        }
+        #title, #polarity-display, #statistics, #list1, #list2, #list3, #list4 {
+          color: black;
+        }
+        #title{
+          font-size: 3rem;
+        }
+        #polarity-display{
+          font-size: 1.75rem;
+        }
+        #statistics{
+          color:black;
+          font-size: 2rem;
+        }
+        #list1, #list2, #list3, #list4 {
+          color: black;
+          font-size: 1.5rem;
+        }
+        #a {
+        width: 100%;
+        }
+        #return {
+           width: 100%;
+           height: 100%;
+        }
+
+    }
+    </style>
+
+
+</head>
+
+<body>
+  <section class="hero is-fullheight">
+    <nav class="hero-head diffback marginless">
+  		<div class="columns is-mobile has-text-weight-bold" style="height: 6rem;">
+
+  		<div class="column left">
+        <article class="media left is-marginless">
+        <figure class="image center is-128x128">
+					<img src="static/logo.png" style ="width: 5rem; height: 5rem;">
+				</figure>
+  			<h1 class="title has-text-centered is-1 has-text-white">PoliBias</h1>
+      </article>
+  		</div>
+
+  		</div>
+  	</nav>
+    <header id="herobody" class="hero-body center">
+      <div id="grid" style="width: 100%;">
+  			<div id="a" class="center center-column has-text-bold is-multiline" style="width: 70%; background-color: rgba(0,0,0,0);">
+          <h1 id="title" class="subtitle" style="padding: 0px">Polarity</h1>
+          <div id="slider-container"  style="padding-top: 0px;">
+              <input type="range" min="1" max="100" value={{ number }} class="slider" id="slider">
+          </div>
+          <h1 id="polarity-display" class="">{{ wordPolarity }}</h1>
+          <div id="list center">
+              <h3 id="statistics" class="has-text-centered" style="text-decoration: underline;">Statistics</h3>
+              <!-- <div class="list">
+              <a class="list-item">one</a>
+              <a class="list-item">two</a>
+              <a class="list-item">three</a>
+              <a class="list-item">four</a>
+          </div> -->
+              <p id="list1" class="has-text-centered">{{number}}</p>
+              <p id="list2" class="has-text-centered">{{message}}</p>
+              <p id="list2" class="has-text-centered">{{polarity}}</p>
+              <p id="list2" class="has-text-centered">{{wordCount}}</p>
+              <p id="list2" class="has-text-centered">{{charCount}}</p>
+              <p id="list2" class="has-text-centered">{{subjectivity}}</p>
+              <p id="list2" class="has-text-centered">{{spaceCount}}</p>
+              <!-- <p id="list3" class="is-size-3 has-text-centered">third</p>
+              <p id="list4" class="is-size-3 has-text-centered">fourth</p> -->
+  			</div>
+  		</div>
+    </div>
+    </header>
+    <div class="container center" style="padding: 10px;">
+      <a href="/" > <button  id ="return" class="button is-left is-rouded is-medium  has-text-centered" style="color: white; background-color: black; ">Return</button> </a>
+  </div>
+    <main class="hero-foot  diffback" style="padding: 1rem;">
+      <p class="subtitle has-text-centered has-text-white is-6" style="width: 100%;">Iain Lee, Mohamed Benalla, Keshav Ganapathy, Yuhwan Lee</p>
+      <p class="subtitle has-text-centered has-text-white is-7" style="width: 100%;">Thank you Dr. Mohit Iyyer for the data set used for the neural network</p>
+  	</main>
+
+  </section>
+</body>
+
+</html>

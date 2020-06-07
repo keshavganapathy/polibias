@@ -1,0 +1,85 @@
+html, body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#title {
+    /* color: black;
+    text-align: center; */
+    font-size: 5rem;
+
+} 
+
+header {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+ img {
+    float: left;
+    margin-right: 2rem;
+}
+#logo {
+    font-size: 3rem;
+    /* float: left; */
+    margin-top: -.25rem;
+    margin-left: 2rem;
+}
+
+#polarity-display {
+    /* text-align: center; */
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+
+.slider {
+    /* makes slider unselectable */
+    pointer-events: none;
+
+    /* margin-top: 7vh;
+    margin-bottom: 6vh; */
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+
+    -webkit-appearance: none; /*override default look*/
+    width: 80%;
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(77,66,255,1) 0%, rgba(255,0,0,1) 100%);
+    /* background: linear-gradient(90deg, rgba(77,66,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,0,0,1) 100%); */
+    height: .5rem;
+}
+
+/*slider handle*/
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  /* appearance: none; */
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #CCCCCC;
+  /* cursor: pointer; */
+}
+
+#slider-container {
+    text-align: center;
+}
+
+
+/* #list {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+    color: black;
+} */
+ 
+/* @media screen and (max-width: 850px){
+    html, body {
+        background-color: black;
+    }
+} */
+
+/* @media (max-width: 800px) {
+    html, body {
+        background-color: black;
+    }
+} */
