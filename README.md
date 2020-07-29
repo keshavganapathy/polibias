@@ -1,2 +1,2 @@
 # PoliBias
-PoliBias is a flask app that allows for real time political bias detection of text via a neural network.
+PoliBias is a flask app that uses machine learning for real time political bias detection of text.
